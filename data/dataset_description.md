@@ -1,7 +1,10 @@
 # Dataset Description
 
 ## Objective
-Document the training/evaluation data used for the CS4985 capstone pipeline.
+Document the tweet sentiment dataset used for the CS4985 capstone pipeline.
+
+## Current Use Case
+Classify tweets as `positive`, `negative`, or `neutral`.
 
 ## Required Content
 1. Selected dataset name and source URL
@@ -10,6 +13,7 @@ Document the training/evaluation data used for the CS4985 capstone pipeline.
 4. Schema (fields, labels, examples)
 5. Dataset size and split plan
 6. Risks: bias, leakage, toxic/sensitive content
+7. Confirmation that all labels map cleanly to `positive`, `negative`, or `neutral`
 
 ## Deliverables
 - Final dataset card (this file)

@@ -23,10 +23,11 @@ Primary folders:
 - `preprocessing/`
 
 Responsibilities:
-1. Finalize dataset source, license, and schema
-2. Build cleaning pipeline and tokenization decisions
-3. Document train/validation/test split strategy
-4. Provide reproducible preprocessing steps
+1. Finalize the tweet sentiment dataset source, license, and schema
+2. Confirm the label set is `positive`, `negative`, and `neutral`
+3. Build cleaning pipeline and tokenization decisions
+4. Document train/validation/test split strategy
+5. Provide reproducible preprocessing steps
 
 Handoff outputs:
 - `data/dataset_description.md` with dataset card details

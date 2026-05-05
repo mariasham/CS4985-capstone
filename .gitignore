@@ -2,3 +2,9 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+artifacts/**
+!artifacts/.gitkeep
+!artifacts/checkpoints/
+!artifacts/checkpoints/.gitkeep
+!artifacts/tokenizers/
+!artifacts/tokenizers/.gitkeep
