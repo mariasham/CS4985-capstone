@@ -23,7 +23,7 @@ In Colab, use `Runtime > Change runtime type > GPU`.
 ## 4. Predict From the Smoke-Test Checkpoint
 ```python
 !PYTHONPATH=src python -m llm_pipeline.predict \
-  --checkpoint artifacts/donovan-smoke-test/checkpoint.pt \
+  --checkpoint artifacts/donovan-smoke-test/best_checkpoint.pt \
   --tokenizer artifacts/donovan-smoke-test/tokenizer.json \
   --text "I love how this project is coming together"
 ```
@@ -43,6 +43,7 @@ Maria's final CSV should have:
 
 ## 6. Pull Artifacts Back Into the Repo
 The training script writes:
+- `best_checkpoint.pt`
 - `checkpoint.pt`
 - `tokenizer.json`
 - `metrics.json`

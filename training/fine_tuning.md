@@ -24,7 +24,7 @@ PYTHONPATH=src python -m llm_pipeline.train \
 Run a prediction from the saved checkpoint:
 ```bash
 PYTHONPATH=src python -m llm_pipeline.predict \
-  --checkpoint artifacts/donovan-smoke-test/checkpoint.pt \
+  --checkpoint artifacts/donovan-smoke-test/best_checkpoint.pt \
   --tokenizer artifacts/donovan-smoke-test/tokenizer.json \
   --text "I love how this project is coming together"
 ```
@@ -62,8 +62,9 @@ Provide:
 
 ## Current Artifact Contract
 Training writes these files to `--output-dir`:
-- `checkpoint.pt`: PyTorch model state, config, labels, and run args
+- `best_checkpoint.pt`: best validation macro F1 checkpoint for evaluation/demo
+- `checkpoint.pt`: final epoch model state, config, labels, and run args
 - `tokenizer.json`: tokenizer vocabulary
-- `metrics.json`: per-epoch validation loss, accuracy, and macro F1
+- `metrics.json`: per-epoch validation loss, accuracy, macro F1, and best checkpoint metadata
 
 These generated artifacts are ignored by git by default because checkpoints can become large. For final submission, include only small representative artifacts or document where the trained checkpoint is stored.
