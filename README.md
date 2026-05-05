@@ -1,52 +1,69 @@
-# CS4985 Capstone – LLM Pipeline Project
+# CS4985 Capstone: Building an LLM Pipeline from Scratch
 
-This project simulates building a full Large Language Model (LLM) pipeline from scratch. The goal is not to actually train a massive model, but to understand and demonstrate each stage of the workflow in a structured and realistic way.
+This repository implements the Spring 2026 CS4985 final project workflow from the provided assignment PDF (`/Users/donovanbonner/Downloads/Capstone.pdf`).
 
-For this project, we are focusing on sentiment analysis, where the model classifies text as positive or negative.
+The project is research-oriented and follows the full LLM lifecycle:
+1. Define use case
+2. Data preparation and curation
+3. Model architecture implementation
+4. Training (pre-training concept + task fine-tuning)
+5. Evaluation
+6. Deployment and monitoring
 
-------------
+## Project Goal
+Build a practical, end-to-end prototype that classifies tweet sentiment as `positive`, `negative`, or `neutral` while demonstrating each LLM pipeline stage clearly, even if we use scaled-down compute and datasets.
 
-## Pipeline Overview
+## Team Collaboration Model
+We are splitting the work so three contributors can progress in parallel.
 
-The pipeline for this project follows these steps:
+- Donovan: model setup + training bootstrap
+- Maria: tweet sentiment dataset curation + preprocessing pipeline
+- Alec: evaluation + deployment baseline
 
-1. Data Collection  
-2. Data Preprocessing  
-3. Model Selection  
-4. Fine-Tuning  
-5. Evaluation  
-6. Deployment  
+Detailed ownership and handoff contracts are in `TEAM_ASSIGNMENTS.md`.
 
-Each stage is organized into its own folder in this repository.
+## Repository Structure
+- `data/`: dataset selection, schema, sourcing notes
+- `use_case_definition.md`: problem framing and success criteria
+- `preprocessing/`: cleaning, tokenization, dataset build steps
+- `model/`: architecture decisions and implementation notes
+- `training/`: pre-training simulation and fine-tuning plan
+- `evaluation/`: metrics, benchmark strategy, error analysis
+- `deployment/`: inference API/service and monitoring plan
+- `src/llm_pipeline/`: Donovan's model, tokenizer, training, and prediction code
+- `examples/`: small sample data for smoke tests before the final dataset is ready
 
-------------
+## Handoff Artifacts (Cross-Team Contracts)
+To reduce merge conflict and blocking, each stage produces concrete outputs:
 
-## Part 1: Data and Setup
+1. `data/` hands off dataset card + raw/processed split description
+2. `preprocessing/` hands off tokenized dataset format and reproducible pipeline steps
+3. `model/` hands off model config and training entrypoints
+4. `training/` hands off checkpoints/logs + reproducible command history
+5. `evaluation/` hands off metrics report + failure case analysis
+6. `deployment/` hands off runnable inference endpoint + basic monitoring checklist
 
-For the data, we are using a labeled dataset where each piece of text has a sentiment label (positive or negative). This allows the model to learn patterns between the input text and the expected output.
+## Immediate Plan
+1. Finalize use case and target task constraints
+2. Lock dataset + preprocessing format
+3. Complete model bootstrap and training loop
+4. Run first evaluation pass and document results
+5. Deploy simple inference endpoint
 
-Before training, the data is cleaned and formatted into input-output pairs.
+## Donovan Colab Smoke Test
+Full copy-paste Colab commands are in `training/colab_quickstart.md`.
 
-Instead of building a model from scratch, we are using a pre-trained language model (such as a transformer from HuggingFace). This makes the process more efficient and realistic.
+```bash
+pip install -r requirements-colab.txt
+PYTHONPATH=src python -m llm_pipeline.train --data examples/sample_tweet_sentiment.csv --epochs 5
+PYTHONPATH=src python -m llm_pipeline.predict --text "I love how this project is coming together"
+```
 
-------------
+## Branching Workflow
+- `main`: stable shared baseline
+- feature branches: short-lived branches per workstream
+- current integration branch for this rework: `codex/capstone-pipeline-rework`
 
-## Part 2: Fine-Tuning
-
-To adapt the model to our task, we use Supervised Fine-Tuning (SFT).
-
-This means the model is trained on labeled examples so it can learn how to correctly classify sentiment. Over time, it improves its predictions based on the data.
-
-------------
-
-## Evaluation and Deployment
-
-The model would be evaluated using accuracy and other performance metrics to make sure it works correctly.
-
-Once validated, it could be deployed through an API so users can input text and receive predictions in real time.
-
-------------
-
-## Conclusion
-
-This project demonstrates the full lifecycle of an LLM pipeline in a structured and practical way. While we are not building a full-scale model, the workflow reflects how real AI systems are developed and used.
+## Source References from Assignment
+- Video: https://youtu.be/quh7z1q7-uc?si=f_19CmxFQkgcYV-m
+- Additional references are listed in `/Users/donovanbonner/Downloads/Capstone.pdf` pages 2-3.

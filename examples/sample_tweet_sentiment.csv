@@ -1,0 +1,13 @@
+text,label
+"I love how easy this project is becoming",positive
+"This update made everything worse",negative
+"The meeting starts at noon today",neutral
+"Amazing work from the whole team",positive
+"I am frustrated with these broken instructions",negative
+"The package arrived yesterday",neutral
+"This class finally makes sense",positive
+"Nothing is working and I hate it",negative
+"The dataset has three sentiment labels",neutral
+"That demo was surprisingly helpful",positive
+"The results are disappointing",negative
+"We are training the model in Colab",neutral
