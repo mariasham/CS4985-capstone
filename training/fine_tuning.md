@@ -17,19 +17,19 @@ Smoke test with the sample dataset:
 ```bash
 PYTHONPATH=src python -m llm_pipeline.train \
   --data examples/sample_tweet_sentiment.csv \
-  --output-dir artifacts/donovan-smoke-test \
+  --output-dir artifacts/smoke-test \
   --epochs 5
 ```
 
 Run a prediction from the saved checkpoint:
 ```bash
 PYTHONPATH=src python -m llm_pipeline.predict \
-  --checkpoint artifacts/donovan-smoke-test/checkpoint.pt \
-  --tokenizer artifacts/donovan-smoke-test/tokenizer.json \
+  --checkpoint artifacts/smoke-test/best_checkpoint.pt \
+  --tokenizer artifacts/smoke-test/tokenizer.json \
   --text "I love how this project is coming together"
 ```
 
-When Maria's processed dataset is ready, replace `examples/sample_tweet_sentiment.csv` with her final CSV path. The expected columns are `text` and `label`, where `label` must be one of `positive`, `negative`, or `neutral`.
+When Maria's processed dataset is ready, replace `examples/sample_tweet_sentiment.csv` with her final CSV path. The expected text column is `text`. The label column may be either `label` or `sentiment`, and values must be one of `positive`, `negative`, or `neutral`.
 
 ## Stage Coverage
 1. Pre-training (scaled simulation acceptable)
@@ -61,9 +61,12 @@ Provide:
 3. Expected input/output format
 
 ## Current Artifact Contract
+The trained team model artifacts are stored in `artifacts/tweet-sentiment-model/`.
+
 Training writes these files to `--output-dir`:
-- `checkpoint.pt`: PyTorch model state, config, labels, and run args
+- `best_checkpoint.pt`: best validation macro F1 checkpoint for evaluation/demo
+- `checkpoint.pt`: final epoch model state, config, labels, and run args
 - `tokenizer.json`: tokenizer vocabulary
-- `metrics.json`: per-epoch validation loss, accuracy, and macro F1
+- `metrics.json`: per-epoch validation loss, accuracy, macro F1, and best checkpoint metadata
 
 These generated artifacts are ignored by git by default because checkpoints can become large. For final submission, include only small representative artifacts or document where the trained checkpoint is stored.

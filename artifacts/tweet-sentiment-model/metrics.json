@@ -1,0 +1,72 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.9967792008988549,
+      "val_loss": 0.8891722250192967,
+      "val_accuracy": 0.5947962154294032,
+      "val_macro_f1": 0.592061178004699,
+      "is_best": true
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8413161669235563,
+      "val_loss": 0.7740761413844912,
+      "val_accuracy": 0.6604803493449781,
+      "val_macro_f1": 0.6610353434251924,
+      "is_best": true
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.750381358933067,
+      "val_loss": 0.7628743328381834,
+      "val_accuracy": 0.6726710334788938,
+      "val_macro_f1": 0.6761988992814526,
+      "is_best": true
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.6772707457365428,
+      "val_loss": 0.7703578235280566,
+      "val_accuracy": 0.6890465793304221,
+      "val_macro_f1": 0.6867970844580092,
+      "is_best": true
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.599151219017641,
+      "val_loss": 0.7758035632894202,
+      "val_accuracy": 0.6834061135371179,
+      "val_macro_f1": 0.6861678155371584,
+      "is_best": false
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.5202244339291185,
+      "val_loss": 0.8271080314505742,
+      "val_accuracy": 0.6828602620087336,
+      "val_macro_f1": 0.6819194380055663,
+      "is_best": false
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.4457233208279075,
+      "val_loss": 0.8916770277932569,
+      "val_accuracy": 0.6677583697234353,
+      "val_macro_f1": 0.6671619166401684,
+      "is_best": false
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.3760874264668863,
+      "val_loss": 0.957266043107062,
+      "val_accuracy": 0.6846797671033479,
+      "val_macro_f1": 0.6862901489849559,
+      "is_best": false
+    }
+  ],
+  "best_epoch": 4,
+  "best_val_macro_f1": 0.6867970844580092,
+  "best_checkpoint": "artifacts/tweet-sentiment-model/best_checkpoint.pt",
+  "final_checkpoint": null
+}

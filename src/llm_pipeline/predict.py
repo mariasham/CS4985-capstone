@@ -37,8 +37,8 @@ def predict_text(model, tokenizer, text, labels, max_len, device):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run sentiment prediction from a trained checkpoint.")
-    parser.add_argument("--checkpoint", default="artifacts/donovan-smoke-test/checkpoint.pt")
-    parser.add_argument("--tokenizer", default="artifacts/donovan-smoke-test/tokenizer.json")
+    parser.add_argument("--checkpoint", default="artifacts/tweet-sentiment-model/best_checkpoint.pt")
+    parser.add_argument("--tokenizer", default="artifacts/tweet-sentiment-model/tokenizer.json")
     parser.add_argument("--text", required=True)
     parser.add_argument("--device", default="auto")
     return parser.parse_args()

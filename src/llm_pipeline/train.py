@@ -12,6 +12,15 @@ from .model import MiniDecoderSentimentClassifier
 from .tokenizer import BasicTweetTokenizer
 
 
+def build_checkpoint(model, args):
+    return {
+        "model_state": model.state_dict(),
+        "model_config": model.config,
+        "labels": ID_TO_LABEL,
+        "args": vars(args),
+    }
+
+
 def set_seed(seed):
     random.seed(seed)
     torch.manual_seed(seed)
@@ -93,6 +102,9 @@ def train(args):
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     loss_fn = nn.CrossEntropyLoss()
     history = []
+    best_macro_f1 = -1.0
+    best_epoch = None
+    best_checkpoint_path = output_dir / "best_checkpoint.pt"
 
     for epoch in range(1, args.epochs + 1):
         model.train()
@@ -114,6 +126,13 @@ def train(args):
         train_loss = total_loss / len(train_dataset)
         val_metrics = evaluate(model, val_loader, device)
         row = {"epoch": epoch, "train_loss": train_loss, **{f"val_{k}": v for k, v in val_metrics.items()}}
+        if val_metrics["macro_f1"] > best_macro_f1:
+            best_macro_f1 = val_metrics["macro_f1"]
+            best_epoch = epoch
+            torch.save(build_checkpoint(model, args), best_checkpoint_path)
+            row["is_best"] = True
+        else:
+            row["is_best"] = False
         history.append(row)
         print(json.dumps(row, indent=2))
 
@@ -121,18 +140,21 @@ def train(args):
     checkpoint_path = output_dir / "checkpoint.pt"
     metrics_path = output_dir / "metrics.json"
     tokenizer.save(tokenizer_path)
-    torch.save(
-        {
-            "model_state": model.state_dict(),
-            "model_config": model.config,
-            "labels": ID_TO_LABEL,
-            "args": vars(args),
-        },
-        checkpoint_path,
-    )
+    torch.save(build_checkpoint(model, args), checkpoint_path)
     with open(metrics_path, "w", encoding="utf-8") as f:
-        json.dump(history, f, indent=2)
+        json.dump(
+            {
+                "history": history,
+                "best_epoch": best_epoch,
+                "best_val_macro_f1": best_macro_f1,
+                "best_checkpoint": str(best_checkpoint_path),
+                "final_checkpoint": str(checkpoint_path),
+            },
+            f,
+            indent=2,
+        )
 
+    print(f"Saved best checkpoint: {best_checkpoint_path}")
     print(f"Saved checkpoint: {checkpoint_path}")
     print(f"Saved tokenizer: {tokenizer_path}")
     print(f"Saved metrics: {metrics_path}")
@@ -141,7 +163,7 @@ def train(args):
 def parse_args():
     parser = argparse.ArgumentParser(description="Train a mini transformer for tweet sentiment classification.")
     parser.add_argument("--data", default="examples/sample_tweet_sentiment.csv")
-    parser.add_argument("--output-dir", default="artifacts/donovan-smoke-test")
+    parser.add_argument("--output-dir", default="artifacts/smoke-test")
     parser.add_argument("--epochs", type=int, default=5)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--lr", type=float, default=3e-4)

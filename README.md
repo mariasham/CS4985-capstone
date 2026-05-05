@@ -1,6 +1,6 @@
 # CS4985 Capstone: Building an LLM Pipeline from Scratch
 
-This repository implements the Spring 2026 CS4985 final project workflow from the provided assignment PDF (`/Users/donovanbonner/Downloads/Capstone.pdf`).
+This repository implements the Spring 2026 CS4985 final project workflow from the provided assignment PDF.
 
 The project is research-oriented and follows the full LLM lifecycle:
 1. Define use case
@@ -30,14 +30,14 @@ Detailed ownership and handoff contracts are in `TEAM_ASSIGNMENTS.md`.
 - `training/`: pre-training simulation and fine-tuning plan
 - `evaluation/`: metrics, benchmark strategy, error analysis
 - `deployment/`: inference API/service and monitoring plan
-- `src/llm_pipeline/`: Donovan's model, tokenizer, training, and prediction code
+- `src/llm_pipeline/`: model, tokenizer, training, and prediction code
 - `examples/`: small sample data for smoke tests before the final dataset is ready
 
 ## Handoff Artifacts (Cross-Team Contracts)
 To reduce merge conflict and blocking, each stage produces concrete outputs:
 
 1. `data/` hands off dataset card + raw/processed split description
-2. `preprocessing/` hands off tokenized dataset format and reproducible pipeline steps
+2. `preprocessing/` hands off CSV files with `text` and either `label` or `sentiment`
 3. `model/` hands off model config and training entrypoints
 4. `training/` hands off checkpoints/logs + reproducible command history
 5. `evaluation/` hands off metrics report + failure case analysis
@@ -50,7 +50,7 @@ To reduce merge conflict and blocking, each stage produces concrete outputs:
 4. Run first evaluation pass and document results
 5. Deploy simple inference endpoint
 
-## Donovan Colab Smoke Test
+## Colab Smoke Test
 Full copy-paste Colab commands are in `training/colab_quickstart.md`.
 
 ```bash
@@ -66,4 +66,4 @@ PYTHONPATH=src python -m llm_pipeline.predict --text "I love how this project is
 
 ## Source References from Assignment
 - Video: https://youtu.be/quh7z1q7-uc?si=f_19CmxFQkgcYV-m
-- Additional references are listed in `/Users/donovanbonner/Downloads/Capstone.pdf` pages 2-3.
+- Additional references are listed in the assignment PDF pages 2-3.
