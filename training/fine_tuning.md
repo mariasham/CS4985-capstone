@@ -29,7 +29,7 @@ PYTHONPATH=src python -m llm_pipeline.predict \
   --text "I love how this project is coming together"
 ```
 
-When Maria's processed dataset is ready, replace `examples/sample_tweet_sentiment.csv` with her final CSV path. The expected columns are `text` and `label`, where `label` must be one of `positive`, `negative`, or `neutral`.
+When Maria's processed dataset is ready, replace `examples/sample_tweet_sentiment.csv` with her final CSV path. The expected text column is `text`. The label column may be either `label` or `sentiment`, and values must be one of `positive`, `negative`, or `neutral`.
 
 ## Stage Coverage
 1. Pre-training (scaled simulation acceptable)

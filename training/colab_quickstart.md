@@ -31,7 +31,7 @@ In Colab, use `Runtime > Change runtime type > GPU`.
 ## 5. Train With Maria's Dataset
 Maria's final CSV should have:
 - `text`: tweet text
-- `label`: one of `positive`, `negative`, or `neutral`
+- `label` or `sentiment`: one of `positive`, `negative`, or `neutral`
 
 ```python
 !PYTHONPATH=src python -m llm_pipeline.train \

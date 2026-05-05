@@ -37,7 +37,7 @@ Detailed ownership and handoff contracts are in `TEAM_ASSIGNMENTS.md`.
 To reduce merge conflict and blocking, each stage produces concrete outputs:
 
 1. `data/` hands off dataset card + raw/processed split description
-2. `preprocessing/` hands off tokenized dataset format and reproducible pipeline steps
+2. `preprocessing/` hands off CSV files with `text` and either `label` or `sentiment`
 3. `model/` hands off model config and training entrypoints
 4. `training/` hands off checkpoints/logs + reproducible command history
 5. `evaluation/` hands off metrics report + failure case analysis

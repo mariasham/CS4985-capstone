@@ -8,18 +8,28 @@ from torch.utils.data import Dataset
 LABELS = ["negative", "neutral", "positive"]
 LABEL_TO_ID = {label: idx for idx, label in enumerate(LABELS)}
 ID_TO_LABEL = {idx: label for label, idx in LABEL_TO_ID.items()}
+LABEL_COLUMNS = ["label", "sentiment"]
+
+
+def find_label_column(fieldnames):
+    for column in LABEL_COLUMNS:
+        if column in fieldnames:
+            return column
+    expected = "', '".join(LABEL_COLUMNS)
+    raise ValueError(f"Dataset must contain 'text' and one label column: '{expected}'.")
 
 
 def load_tweet_rows(path):
     rows = []
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        if "text" not in reader.fieldnames or "label" not in reader.fieldnames:
-            raise ValueError("Dataset must contain 'text' and 'label' columns.")
+        if "text" not in reader.fieldnames:
+            raise ValueError("Dataset must contain a 'text' column.")
+        label_column = find_label_column(reader.fieldnames)
 
         for row in reader:
             text = (row.get("text") or "").strip()
-            label = (row.get("label") or "").strip().lower()
+            label = (row.get(label_column) or "").strip().lower()
             if not text:
                 continue
             if label not in LABEL_TO_ID:
