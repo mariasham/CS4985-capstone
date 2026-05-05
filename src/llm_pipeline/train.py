@@ -163,7 +163,7 @@ def train(args):
 def parse_args():
     parser = argparse.ArgumentParser(description="Train a mini transformer for tweet sentiment classification.")
     parser.add_argument("--data", default="examples/sample_tweet_sentiment.csv")
-    parser.add_argument("--output-dir", default="artifacts/donovan-smoke-test")
+    parser.add_argument("--output-dir", default="artifacts/smoke-test")
     parser.add_argument("--epochs", type=int, default=5)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--lr", type=float, default=3e-4)

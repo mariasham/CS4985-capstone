@@ -17,15 +17,15 @@ Smoke test with the sample dataset:
 ```bash
 PYTHONPATH=src python -m llm_pipeline.train \
   --data examples/sample_tweet_sentiment.csv \
-  --output-dir artifacts/donovan-smoke-test \
+  --output-dir artifacts/smoke-test \
   --epochs 5
 ```
 
 Run a prediction from the saved checkpoint:
 ```bash
 PYTHONPATH=src python -m llm_pipeline.predict \
-  --checkpoint artifacts/donovan-smoke-test/best_checkpoint.pt \
-  --tokenizer artifacts/donovan-smoke-test/tokenizer.json \
+  --checkpoint artifacts/smoke-test/best_checkpoint.pt \
+  --tokenizer artifacts/smoke-test/tokenizer.json \
   --text "I love how this project is coming together"
 ```
 
@@ -61,6 +61,8 @@ Provide:
 3. Expected input/output format
 
 ## Current Artifact Contract
+The trained team model artifacts are stored in `artifacts/tweet-sentiment-model/`.
+
 Training writes these files to `--output-dir`:
 - `best_checkpoint.pt`: best validation macro F1 checkpoint for evaluation/demo
 - `checkpoint.pt`: final epoch model state, config, labels, and run args

@@ -8,3 +8,7 @@ artifacts/**
 !artifacts/checkpoints/.gitkeep
 !artifacts/tokenizers/
 !artifacts/tokenizers/.gitkeep
+!artifacts/tweet-sentiment-model/
+!artifacts/tweet-sentiment-model/best_checkpoint.pt
+!artifacts/tweet-sentiment-model/tokenizer.json
+!artifacts/tweet-sentiment-model/metrics.json

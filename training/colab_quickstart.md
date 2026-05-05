@@ -1,4 +1,4 @@
-# Donovan Colab Quickstart
+# Colab Training Quickstart
 
 Use this as the copy-paste runbook for Google Colab.
 
@@ -16,15 +16,15 @@ In Colab, use `Runtime > Change runtime type > GPU`.
 ```python
 !PYTHONPATH=src python -m llm_pipeline.train \
   --data examples/sample_tweet_sentiment.csv \
-  --output-dir artifacts/donovan-smoke-test \
+  --output-dir artifacts/smoke-test \
   --epochs 5
 ```
 
 ## 4. Predict From the Smoke-Test Checkpoint
 ```python
 !PYTHONPATH=src python -m llm_pipeline.predict \
-  --checkpoint artifacts/donovan-smoke-test/best_checkpoint.pt \
-  --tokenizer artifacts/donovan-smoke-test/tokenizer.json \
+  --checkpoint artifacts/smoke-test/best_checkpoint.pt \
+  --tokenizer artifacts/smoke-test/tokenizer.json \
   --text "I love how this project is coming together"
 ```
 
@@ -36,7 +36,7 @@ Maria's final CSV should have:
 ```python
 !PYTHONPATH=src python -m llm_pipeline.train \
   --data data/processed/tweet_sentiment.csv \
-  --output-dir artifacts/donovan-final-run \
+  --output-dir artifacts/tweet-sentiment-model \
   --epochs 10 \
   --batch-size 32
 ```
